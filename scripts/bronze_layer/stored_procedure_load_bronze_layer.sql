@@ -16,10 +16,9 @@ Usage Example:
     EXEC bronze.load_bronze;
 ===============================================================================
 */
-
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS
 BEGIN
-	DECLARE @start_time DATETIME, @end_time DATETIME, @layer_start_time DATETIME , @layer_end_time DATETIME;
+	DECLARE @start_time DATETIME2, @end_time DATETIME2, @layer_start_time DATETIME2, @layer_end_time DATETIME2;
 	BEGIN TRY
 		SET @layer_start_time =GETDATE();
 			PRINT '===========================================================';
