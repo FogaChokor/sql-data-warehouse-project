@@ -24,7 +24,8 @@ BEGIN
 			PRINT '===========================================================';
 			PRINT 'Loading Bronze Layer';
 			PRINT '===========================================================';
-
+			
+			-- CRM DATA SOURCE START
 			PRINT '-----------------------------------------------------------';
 			PRINT 'Loading CRM Tables';
 			PRINT '-----------------------------------------------------------';
@@ -76,8 +77,9 @@ BEGIN
 			SET @end_time =GETDATE();
 			PRINT '>> Load Duration: ' + CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 			PRINT '<><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><>';
+			-- CRM DATA SOURCE END
 
-
+			-- ERP DATA SOURCE START
 			PRINT '-----------------------------------------------------------';
 			PRINT 'Loading ERP Tables';
 			PRINT '-----------------------------------------------------------';
@@ -126,6 +128,8 @@ BEGIN
 				FIELDTERMINATOR = ',',
 				TABLOCK
 			);
+			-- ERP DATA SOURCE END
+
 			SET @end_time =GETDATE();
 			PRINT '>> Load Duration: ' + CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 			PRINT '<><><><><><><><><><><><><><><<><><><><><><><><><><><><><><><>';
