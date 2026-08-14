@@ -1,24 +1,33 @@
-# Data Warehouse and Analytics Project
+# SQL Server Data Warehouse & Analytics Project
 
-Welcome to the **Data Warehouse and Analytics Project** repository! 🚀  
-This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights. Designed as a portfolio project, it highlights industry best practices in data engineering and analytics.
+A portfolio project demonstrating the design and development of a modern SQL Server data warehouse using **Medallion Architecture (Bronze, Silver, Gold)**.
 
----
-## 🏗️ Data Architecture
+## What I Built
 
-The data architecture for this project follows Medallion Architecture **Bronze**, **Silver**, and **Gold** layers:
-![Data Architecture](docs/data_architecture.png)
+* Designed a SQL Server data warehouse integrating **CRM and ERP data** from CSV sources.
+* Built **ETL pipelines and stored procedures** for data ingestion, cleansing, transformation and standardisation.
+* Created a **star-schema model** with customer and product dimensions and a sales fact table.
+* Developed **SQL data-quality checks** covering duplicates, nulls, invalid dates, referential integrity and business-rule validation.
+* Created supporting **data architecture, data flow, data integration, data layer and data model documentation**.
 
-1. **Bronze Layer**: Stores raw data as-is from the source systems. Data is ingested from CSV Files into SQL Server Database.
-2. **Silver Layer**: This layer includes data cleansing, standardization, and normalization processes to prepare data for analysis.
-3. **Gold Layer**: Houses business-ready data modeled into a star schema required for reporting and analytics.
+## Technologies
 
----
-## 📖 Project Overview
+**SQL Server | T-SQL | ETL | Stored Procedures | SQL Views | Data Modelling | Medallion Architecture**
 
-This project involves:
+## Architecture
 
-1. **Data Architecture**: Designing a Modern Data Warehouse Using Medallion Architecture **Bronze**, **Silver**, and **Gold** layers.
-2. **ETL Pipelines**: Extracting, transforming, and loading data from source systems into the warehouse.
-3. **Data Modeling**: Developing fact and dimension tables optimized for analytical queries.
-4. **Analytics & Reporting**: Creating SQL-based reports and dashboards for actionable insights.
+```text
+CRM / ERP CSV Files
+        ↓
+     Bronze
+        ↓
+     Silver
+        ↓
+      Gold
+        ↓
+ Analytics & Reporting
+```
+
+## Key Skills Demonstrated
+
+SQL development, ETL, data warehousing, data quality, data integration, dimensional modelling and problem solving.
