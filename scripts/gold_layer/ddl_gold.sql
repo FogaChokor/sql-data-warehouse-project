@@ -40,11 +40,17 @@ LEFT JOIN silver.erp_cust_az12 AS ca
 ON ci.cst_key = ca.cid
 LEFT JOIN silver.erp_loc_a101 AS la
 ON ci.cst_key = la.cid;
+
+GO
 -- After Joining tables together, it os always best to check for duplicates
 
 -- =============================================================================
 -- Create Dimension: gold.dim_products
 -- =============================================================================
+IF OBJECT_ID('gold.dim_products', 'V') IS NOT NULL
+    DROP VIEW gold.dim_products;
+GO
+
 CREATE VIEW gold.dim_products AS
 SELECT
 	ROW_NUMBER() OVER (ORDER BY pn.prd_start_dt, pn.prd_key) AS product_key,
@@ -63,25 +69,33 @@ SELECT
 	ON pn.cat_id = pc.id
 	WHERE prd_end_dt IS NULL --filters out all historical data. i.e current data does not have an end date yet so it will be null
 
+
+GO
 -- =============================================================================
 -- Create Fact: gold.fact_sales
 -- =============================================================================
+IF OBJECT_ID('gold.fact_sales', 'V') IS NOT NULL
+    DROP VIEW gold.fact_sales;
+GO
+
 CREATE VIEW gold.fact_sales AS
 SELECT
-sls_ord_num AS order_number,
-pr.product_key,
-cu.customer_key,
-sls_order_dt AS order_date,
-sls_ship_dt AS shipping_date,
-sls_due_dt AS due_date,
-sls_sales AS sales_amount,
-sls_quantity AS quantity,
-sls_price AS price
-FROM silver.crm_sales_details AS sd
-LEFT JOIN gold.dim_products AS pr
-ON sd.sls_prd_key = pr.product_number
-LEFT JOIN gold.dim_customers AS cu
-ON sd.sls_cust_id = cu.customer_id
+	sls_ord_num AS order_number,
+	pr.product_key,
+	cu.customer_key,
+	sls_order_dt AS order_date,
+	sls_ship_dt AS shipping_date,
+	sls_due_dt AS due_date,
+	sls_sales AS sales_amount,
+	sls_quantity AS quantity,
+	sls_price AS price
+	FROM silver.crm_sales_details AS sd
+	LEFT JOIN gold.dim_products AS pr
+	ON sd.sls_prd_key = pr.product_number
+	LEFT JOIN gold.dim_customers AS cu
+	ON sd.sls_cust_id = cu.customer_id
+
+GO
 
 /*
 NOTE:
