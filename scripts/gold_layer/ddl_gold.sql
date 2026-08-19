@@ -33,7 +33,7 @@ SELECT
 	CASE WHEN ci.cst_gndr != 'n/a' THEN ci.cst_gndr -- CRM is the master source for gender info, so use it.
 		ELSE COALESCE(ca.gen, 'n/a') --COALESCE replaces NULL with 'n/a'
 	END AS gender,
-	ca.bdate AS birthday,
+	ca.bdate AS birthdate,
 	ci.cst_create_date AS create_date
 FROM silver.crm_cust_info AS ci
 LEFT JOIN silver.erp_cust_az12 AS ca
